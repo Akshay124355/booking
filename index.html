@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<!-- algorithm
+1] display seat adn movie list
+2] toggle seat selection
+if booked disable this functionality
+ on seat selection ,
+show complete bill,
+such as movie ,name,rate of ticket,total number of seat,total bill
+4] after bookrd button click
+5]add all selected seat to the localstorage
+
+-->
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./animation.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    .container {
+        height: 500px;
+        width: 500px;
+        border: solid 2px yellow;
+        padding-top: 150px;
+        background-color: black;
+        margin-top: 50px;
+        padding-left: 50px;
+        margin-left: 240px;
+        border-radius: 30px;
+        overflow: hidden;
+        position: absolute;
+    }
+
+    #tt {
+        box-shadow: 0px 0px 100px rgb(229, 255, 0);
+    }
+
+    .d {
+
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        border: solid 2px black;
+        margin: 5px;
+        display: inline-block;
+        /* background-color: black; */
+        padding: 20px;
+        background-color: white;
+    }
+
+    h1 {
+
+        align-items: center;
+        font-size: 100px;
+        transform: scale(3);
+        margin-top: 50px;
+        margin-left: 400px;
+    }
+
+    button {
+
+        transform: scale(2);
+        margin-left: 130px;
+        margin-top: 40px;
+
+    }
+
+    .container3 {
+        transform: scale(2);
+
+        width: 200px;
+        margin-top: 70px;
+        margin-left: 380px;
+
+    }
+
+    #output {
+        background-color: black;
+        height: 50px;
+        font-size: 25px;
+        color: white;
+        width: 400px;
+        border: 2px solid red;
+        margin-right: 100px;
+
+
+
+    }
+
+    #output2 {
+        background-color: black;
+        height: 60px;
+        font-size: 35px;
+        color: white;
+        width: 480px;
+        margin-top: 30px;
+        margin-left: 250px;
+        padding-left: 100px;
+    }
+
+    .container4 {
+
+        background-color: blue;
+        height: 900px;
+        width: 1000px;
+        /* border: 3px solid red; */
+        border-radius: 50px;
+        margin-left: 250px;
+
+    }
+</style>
+
+<body style="background-color:black;">
+    <img src="" alt="">
+    <div class="container4">
+        <h1 class="btn btn-warning">BOOK YOUR SHOW</h1>
+        <div class="container3">
+            <select style="color:red;" class="form-control">
+
+                <option value="50" class="d" id="movie1">Movie 1</option>
+                <option value="50" id="movie2">Movie 2</option>
+                <option value="50" id="movie3">Movie 3</option>
+
+            </select>
+        </div>
+        <p id="output2"></p>
+
+
+
+        <div class="container" id="tt">
+            <p id="output"></p>
+
+            <div class="d" id="seat1"></div>
+            <div class="d" id="seat2"></div>
+            <div class="d" id="seat3"></div>
+            <div class="d" id="seat4"></div>
+            <div class="d" id="seat5"></div>
+            <div class="d" id="seat6"></div>
+            <div class="d" id="seat7"></div><br>
+            <div class="d" id="seat8"></div>
+            <div class="d" id="seat9"></div>
+            <div class="d" id="seat10"></div>
+            <div class="d" id="seat11"></div>
+            <div class="d" id="seat12"></div>
+            <div class="d" id="seat13"></div>
+            <div class="d" id="seat14"></div><br>
+            <div class="d" id="seat15"></div>
+            <div class="d" id="seat16"></div>
+            <div class="d" id="seat17"></div>
+            <div class="d" id="seat18"></div>
+            <div class="d" id="seat19"></div>
+            <div class="d" id="seat20"></div>
+            <div class="d" id="seat21"></div><br><br>
+            <button class="btn btn-dark" id="btn">CLICK TO BOOK</button>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+
+        $(document).ready(function () {
+            //   ready function
+            let arr1 = [];
+            let arr2 = [];
+            let arr3 = [];
+            $(".d").click(function () {
+                $(this).toggleClass("bg-success");
+            });
+
+
+            $("#btn").click(function () {
+
+
+                let div = document.querySelectorAll(".bg-success");
+                let seat = document.querySelectorAll(".bg-success");
+                console.log(seat.length);
+                // console.log((seat.length) - (21) + 'remaining');
+                // let data = parseInt(seat);
+                let totalseat = parseInt(seat.length);
+                $("#output2").html(("<p>" + ` Remaining seat is ` + (21 - totalseat) + "</p>"));
+                // console.log(totalseat);
+                let selected = document.querySelector("#movie1").value;
+                let totalcost = parseInt(selected);
+
+                // let selected2 = document.querySelector("#movie2").value;
+                // let movie = parseInt(selected2);
+
+
+                $("#output").html(`${'you have selected ' + totalseat + ' seat ' + "for the price of " + (totalseat * totalcost)}`);
+
+                //    ("#seat1").classList.contains
+
+                let data = document.querySelectorAll(".bg-success");
+                // console.log(data);
+
+                // for (i = 0; i < data.length; i++) {
+                //     // console.log(data[i].id);
+                //     // let item = data[i].id;
+                //     arr1.push(data[i].id);
+                //     // this below line for adding bg-danger
+                //     document.getElementById(`${data[i].id}`).classList.add("bg-danger");
+                //     //<----------------------------------------------->
+
+                //     JSON.stringify(localStorage.setItem("movie 1", arr1));
+                // }
+
+
+
+            });//ending of btn function  // swayper js ,owel
+            // $("#btn").click(function () {
+            //     let div1 = document.querySelectorAll(".bg-success");
+            //     let seat1 = document.querySelectorAll(".bg-success");
+            //     console.log(seat.length);
+            //     let selected1 = document.querySelector("#movie2").value;
+            //     let totalcost1 = parseInt(selected);
+
+            //     let data1 = document.querySelectorAll(".bg-success");
+            //     // console.log(data);
+            //     for (i = 0; i < data1.length; i++) {
+            //         // console.log(data[i].id);
+            //         // let item = data[i].id;
+            //         arr2.push(data1[i].id);
+            //         // this below line for adding bg-danger
+            //         document.getElementById(`${data[i].id}`).classList.add("bg-danger");
+            //         JSON.stringify(localStorage.setItem("movie 2", arr2));
+            //     }
+
+            // });
+
+
+        });//ending of the ready function
+
+        // });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
